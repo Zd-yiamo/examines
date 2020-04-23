@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="examine-dao" />
+        <module name="examinservice" />
+        <module name="examine-service-impl" />
+        <module name="examine-web" />
+        <module name="examinecommon" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="examine" target="1.8" />
+      <module name="examine-dao" target="1.8" />
+      <module name="examine-service" target="1.8" />
+      <module name="examine-service-impl" target="1.8" />
+      <module name="examine-web" target="1.8" />
+      <module name="examinecommon" target="1.8" />
+      <module name="examineservice" target="1.8" />
+      <module name="examinservice" target="1.8" />
+      <module name="orservice" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="examine" options="-parameters" />
+      <module name="examine-dao" options="-parameters" />
+      <module name="examine-service" options="-parameters" />
+      <module name="examine-service-impl" options="-parameters" />
+      <module name="examine-web" options="-parameters" />
+      <module name="examinecommon" options="-parameters" />
+      <module name="examineservice" options="-parameters" />
+      <module name="examinservice" options="-parameters" />
+      <module name="orservice" options="-parameters" />
+    </option>
+  </component>
+</project>

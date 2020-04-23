@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义短信随访</title>
+</head>
+<style>
+    /*
+      * 外面盒子样式---自己定义
+      */
+
+    .page_div {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 15px;
+        font-family: "microsoft yahei";
+        color: #666666;
+        margin-right: 10px;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+    /*
+     * 页数按钮样式
+     */
+
+    .page_div a {
+        min-width: 30px;
+        height: 28px;
+        border: 1px solid #dce0e0!important;
+        text-align: center;
+        margin: 0 4px;
+        cursor: pointer;
+        line-height: 28px;
+        color: #666666;
+        font-size: 13px;
+        display: inline-block;
+    }
+
+    #firstPage,
+    #lastPage {
+        width: 50px;
+        color: #0073A9;
+        border: 1px solid #0073A9!important;
+    }
+
+    #prePage,
+    #nextPage {
+        width: 70px;
+        color: #0073A9;
+        border: 1px solid #0073A9!important;
+    }
+
+    .page_div .current {
+        background-color: #0073A9;
+        border-color: #0073A9;
+        color: #FFFFFF;
+    }
+
+    .totalPages {
+        margin: 0 10px;
+    }
+
+    .totalPages span,
+    .totalSize span {
+        color: #0073A9;
+        margin: 0 5px;
+    }
+    #xiala{
+        position: absolute;
+        top:176px;
+        left:100px;
+    }
+</style>
+</head>
+<link rel="stylesheet" href="static.layui/css/layui.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/layui/layui.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/JsAndCss/bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/JsAndCss/css/CustomTextFollowUp.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/page/css/ctfuTable.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/JsAndCss/js/jquery.min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/JsAndCss/bootstrap/js/bootsrap.min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/JsAndCss/js/paging.js"></script>
+
+<body style="position: relative;">
+
+<center>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <table class="table" border="0" cellspacing="" cellpadding="">
+                <tr>
+                    <td colspan="4"><div class="input-group" style="width:100%;">
+                        <span class="input-group-addon" id="basic-addon1">请选择建档随访地区： </span>
+                        <input type="text" class="form-control" placeholder="请输入" aria-describedby="basic-addon1">
+                    </div></td>
+                    <td colspan="4"><div class="input-group" style="width: 100%;">
+                        <span class="input-group-addon" id="basic-addon1">妻子名字： </span>
+                        <input type="text" class="form-control" placeholder="请输入名字" aria-describedby="basic-addon1" id="fidCard">
+                    </div></td>
+                    <td colspan="4"><div class="input-group" style="width:100%;">
+                        <span class="input-group-addon" id="basic-addon1">身份证号码： </span>
+                        <input type="text" class="form-control" placeholder="请输入号码" aria-describedby="basic-addon1" id="fname">
+                    </div></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><div class="input-group" style="width:100%;">
+                        <span class="input-group-addon" id="basic-addon1">创建时间  从： </span>
+                        <input type="text" class="layui-input" placeholder="请输入" aria-describedby="basic-addon1" id="qs">
+                    </div>
+                    </td>
+                    <td colspan="4"><div class="input-group" style="width: 100%;"><span class="input-group-addon"id="basic-addon1">至： </span><input type="text" class="layui-input" placeholder="请输入" aria-describedby="basic-addon1" id="js">
+                    </div>
+                    </td>
+                    <td colspan="4"><div class="input-group" style="width:100%;">
+                        <span class="input-group-addon" id="basic-addon1">风险类型： </span>
+                        <select class="form-control" aria-describedby="basic-addon1" id="fx">
+                            <option value="">--请选择--</option>
+                            <option value="0" >无风险</option>
+                            <option value="1" >女方有风险</option>
+                            <option value="2" >男方有风险</option>
+                            <option value="3" >双方有风险</option>
+                        </select>
+                    </div></td>
+                    <td>
+                        <button type="button" class="btn btn-info" onclick="cx()">查询</button>
+                        <!-- <a href=""><button type="button" class="btn btn-warning">导出</button></a> -->
+                        <!-- <a href=""><button type="button" class="btn btn-danger">返回</button></a> -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</center>
+<!-- 2 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <table  border="0" cellspacing="" cellpadding="">
+            <tr>
+                <th>短信内容：</th>
+                <td>
+                    <textarea name="" id="tbUnit" style="width:300px;" placeholder="请输入短信内容"></textarea>
+                    <select onchange="document.getElementById('tbUnit').value=this.options[this.selectedIndex].value" style="width:300px;clip: rect(auto auto auto 280px);" id = "xiala">
+                        <option value="" name="option"></option>
+
+                    </select>
+                </td>
+
+                <td><button type="button" class="btn btn-info" style="margin-left: 20px;" onclick="fason()">发送短信</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <!-- Default panel contents -->
+    <div class="panel-heading">自定义短信随访</div>
+    <!-- Table -->
+    <table class="table" id="tr1">
+        <tr >
+            <th class="sid">档案编号</th>
+            <th class="name">姓名</th>
+            <th class="id">身份证号</th>
+            <th class="age">年龄</th>
+            <th class="date">出生日期</th>
+            <th class="addr">住址</th>
+            <th class="phone">手机号码</th>
+            <!--
+            <th class="A">是否发送</th>
+            <th class="B">是否成功</th>
+            <th class="datetime">发送时间</th>
+            -->
+        </tr>
+    </table>
+</div>
+<div value="1 0"></div>
+<div id="page" class="page_div"></div>
+</body>
+</html>
